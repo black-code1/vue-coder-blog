@@ -4,12 +4,13 @@
     <input type="text" v-model="search" />
     <p>search term - {{ search }}</p>
     <div v-for="name in matchingNames" :key="name">{{ name }}</div>
+    <button @click="handleClick">stop watching</button>
   </div>
 </template>
 
 <script>
 import { ref } from "@vue/reactivity";
-import { computed } from "@vue/runtime-core";
+import { computed, watch, watchEffect } from "@vue/runtime-core";
 // @ is an alias to /src
 
 export default {
@@ -26,10 +27,23 @@ export default {
       "peach",
     ]);
 
+    const stopWatch = watch(search, () => {
+      console.log("watch function run");
+    });
+
+    const stopEffect = watchEffect(() => {
+      console.log("watcheffect function ran", search.value);
+    });
+
     const matchingNames = computed(() => {
       return names.value.filter((name) => name.includes(search.value));
     });
-    return { names, search, matchingNames };
+
+    const handleClick = () => {
+      stopWatch();
+      stopEffect();
+    };
+    return { names, search, matchingNames, handleClick };
   },
 };
 </script>
