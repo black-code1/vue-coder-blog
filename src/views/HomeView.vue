@@ -1,49 +1,32 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search" />
-    <p>search term - {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">{{ name }}</div>
-    <button @click="handleClick">stop watching</button>
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
+import PostList from "../components/PostList.vue";
 import { ref } from "@vue/reactivity";
-import { computed, watch, watchEffect } from "@vue/runtime-core";
 // @ is an alias to /src
 
 export default {
   name: "HomeView",
+  components: { PostList },
   setup() {
-    const search = ref("");
-    const names = ref([
-      "mario",
-      "yoshi",
-      "luigi",
-      "toad",
-      "bowser",
-      "koopa",
-      "peach",
+    const posts = ref([
+      {
+        title: "welcome to the blog",
+        body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex numquam natus sint, quibusdam sunt labore voluptates delectus officiis autem voluptatum unde eum ea et, fugit consectetur quia nobis vel quidem reprehenderit recusandae aliquid ipsa assumenda rerum? Nobis consequatur sit excepturi pariatur, laboriosam doloremque ex eaque aliquid officiis, non culpa voluptatibus facilis accusamus repellat recusandae quas at perspiciatis, fugit eius perferendis. Magnam ea animi et voluptate tenetur! Voluptates excepturi enim nostrum, autem labore commodi quis tenetur minus recusandae omnis ipsam neque quod, illo qui rem repudiandae laborum aspernatur culpa dignissimos consectetur, possimus unde hic. Placeat inventore consequuntur quisquam perferendis saepe sequi!",
+        id: 1,
+      },
+      {
+        title: "top 5 CSS tips",
+        body: "loremipsum",
+        id: 2,
+      },
     ]);
-
-    const stopWatch = watch(search, () => {
-      console.log("watch function run");
-    });
-
-    const stopEffect = watchEffect(() => {
-      console.log("watcheffect function ran", search.value);
-    });
-
-    const matchingNames = computed(() => {
-      return names.value.filter((name) => name.includes(search.value));
-    });
-
-    const handleClick = () => {
-      stopWatch();
-      stopEffect();
-    };
-    return { names, search, matchingNames, handleClick };
+    return { posts };
   },
 };
 </script>
