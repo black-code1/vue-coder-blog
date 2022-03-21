@@ -25,6 +25,12 @@
       "body": "content",
       "tags": "",
       "id": 3
+    },
+    {
+      "title": "Another title",
+      "body": "Another content",
+      "tags": "",
+      "id": 4
     }
   ]
 }
