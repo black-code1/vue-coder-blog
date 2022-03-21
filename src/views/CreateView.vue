@@ -41,7 +41,7 @@ export default {
       const post = {
         title: title.value,
         body: body.value,
-        tags: tag.value,
+        tags: tags.value,
       };
 
       await fetch("http://localhost:3000/posts", {

@@ -21,16 +21,14 @@
       ]
     },
     {
-      "title": "title",
-      "body": "content",
-      "tags": "",
+      "title": "another title",
+      "body": "another content",
+      "tags": [
+        "python",
+        "c#",
+        "flutter"
+      ],
       "id": 3
-    },
-    {
-      "title": "Another title",
-      "body": "Another content",
-      "tags": "",
-      "id": 4
     }
   ]
 }
